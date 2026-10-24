@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 360" role="img" aria-labelledby="title desc">
+  <title id="title">Friday, the shadow academy guide</title>
+  <desc id="desc">An original silver-haired anime-inspired guide stands before a glowing rift with a blue rune blade.</desc>
+  <defs>
+    <linearGradient id="rift" x1="170" y1="20" x2="170" y2="330" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#9e7cff"/>
+      <stop offset=".48" stop-color="#4bdcff"/>
+      <stop offset="1" stop-color="#17204b"/>
+    </linearGradient>
+    <linearGradient id="coat" x1="95" y1="180" x2="270" y2="350" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#283552"/>
+      <stop offset=".55" stop-color="#11192b"/>
+      <stop offset="1" stop-color="#080d18"/>
+    </linearGradient>
+    <linearGradient id="hair" x1="112" y1="75" x2="252" y2="188" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#f5f5ff"/>
+      <stop offset=".55" stop-color="#aabbe0"/>
+      <stop offset="1" stop-color="#687da9"/>
+    </linearGradient>
+    <linearGradient id="blade" x1="270" y1="145" x2="319" y2="323" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#efffff"/>
+      <stop offset=".35" stop-color="#78eaff"/>
+      <stop offset="1" stop-color="#3979ff"/>
+    </linearGradient>
+    <radialGradient id="portal" cx="0" cy="0" r="1" gradientTransform="matrix(0 120 -88 0 180 135)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#5366f7" stop-opacity=".6"/>
+      <stop offset=".7" stop-color="#362870" stop-opacity=".24"/>
+      <stop offset="1" stop-color="#101526" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="aura" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="8"/>
+    </filter>
+  </defs>
+  <ellipse cx="180" cy="330" rx="126" ry="18" fill="#3bcbff" opacity=".2" filter="url(#aura)"/>
+  <ellipse cx="180" cy="143" rx="94" ry="126" fill="url(#portal)"/>
+  <path d="M95 262c-26-48-28-100-7-151 17-42 53-70 91-70s74 28 91 70c21 51 19 103-7 151" fill="none" stroke="url(#rift)" stroke-width="3" opacity=".72"/>
+  <path d="m83 104 9 20 21 9-21 9-9 21-9-21-21-9 21-9 9-20Zm201 59 6 14 14 6-14 6-6 14-6-14-14-6 14-6 6-14Z" fill="#83eaff" opacity=".9"/>
+  <circle cx="75" cy="202" r="3" fill="#c5a9ff"/>
+  <circle cx="285" cy="91" r="3" fill="#e2faff"/>
+  <circle cx="115" cy="57" r="2" fill="#e2faff"/>
+  <path d="M113 348c5-63 23-105 67-113 47 8 64 50 68 113H113Z" fill="url(#coat)" stroke="#53658c" stroke-width="2"/>
+  <path d="m145 237 35 35 32-35-13 111h-43l-11-111Z" fill="#171f34"/>
+  <path d="m178 270 14 31-13 20-13-20 12-31Z" fill="#60dcff" opacity=".85"/>
+  <path d="m136 250-22 98h-23l19-86 26-12Zm82 0 28 98h23l-26-86-25-12Z" fill="#202b45" stroke="#435478" stroke-width="2"/>
+  <path d="M132 151c-3-49 14-81 50-81s54 33 50 81l-5 39c-3 23-24 43-45 43s-42-20-45-43l-5-39Z" fill="#d9c4b3"/>
+  <path d="M129 153c-11-48-3-82 21-102l-2 31c17-27 45-40 77-34l-20 17c23 3 41 17 49 41l-17-6c11 19 12 44 3 65l-12-27-16-15c-18 14-48 21-83 18l-2 37-12-25-5 13-5-23 24 10Z" fill="url(#hair)" stroke="#eef5ff" stroke-linejoin="round" stroke-width="3"/>
+  <path d="m147 154 24 5-7 6-19-3m43-3 22-6-2 9-18 5" fill="#263453"/>
+  <path d="m164 160 5 2-2 15-5-2 2-15Zm31-1 5 2-3 15-5-2 3-15Z" fill="#69ddff"/>
+  <path d="M174 189c7 4 15 4 22-1" fill="none" stroke="#986d78" stroke-linecap="round" stroke-width="3"/>
+  <path d="m149 204 30 10 31-11-9 31-22 17-21-17-9-30Z" fill="#d1dbea"/>
+  <path d="m155 226 24 14 24-14 7 18-31 25-31-25 7-18Z" fill="#162039" stroke="#7486ae" stroke-width="2"/>
+  <path d="m254 189 13-11 29 112-8 21-16-15-31-106 13-1Z" fill="#101a2d" stroke="#637ba5" stroke-width="3"/>
+  <path d="m269 177 8-36 8 34 31 107-14 7-32-106  -1-6Z" fill="url(#blade)" stroke="#d3faff" stroke-linejoin="round" stroke-width="2"/>
+  <path d="m266 180 30-9 5 14-31 9-4-14Z" fill="#c3b1ff" stroke="#f1eaff" stroke-width="2"/>
+  <path d="m299 264 10-3 7 24-14 4-3-25Z" fill="#e5faff" opacity=".9"/>
+  <path d="m107 281-19 31 7-40 22-30-10 39Zm145-50 25 35 6 37-21-30-10-42Z" fill="#7a5aff" opacity=".42" filter="url(#aura)"/>
+  <path d="M110 325h140" stroke="#76e5ff" stroke-linecap="round" stroke-width="2" opacity=".7"/>
+</svg>
