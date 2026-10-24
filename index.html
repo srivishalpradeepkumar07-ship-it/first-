@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#071a1c">
+  <title>EduTechX | Cloud & DevOps Learning Buddy</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --teal: #007966;
+      --teal-dark: #005e54;
+      --orange: #ff7417;
+      --ink: #132629;
+      --muted: #647578;
+      --line: #e4eceb;
+      --paper: #ffffff;
+      --soft: #f3f8f7;
+      --night: #071a1c;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(ellipse at 7% 9%, rgba(0,121,102,.10), transparent 28rem),
+        radial-gradient(ellipse at 93% 18%, rgba(255,116,23,.10), transparent 25rem),
+        #f6faf9;
+    }
+    button, textarea { font: inherit; }
+    button { cursor: pointer; }
+    .shell { width: min(1180px, calc(100% - 36px)); margin: 0 auto; padding: 22px 0 28px; }
+    .topbar { display: flex; justify-content: space-between; align-items: center; gap: 18px; margin-bottom: 20px; }
+    .brand-lockup { display: flex; align-items: center; gap: 10px; min-width: 0; }
+    .brand-logo { display: block; width: 66px; height: 66px; object-fit: contain; flex: 0 0 auto; }
+    .brand-wordmark { display: flex; flex-direction: column; gap: 3px; line-height: 1.05; }
+    .brand-wordmark strong { font-size: clamp(1.25rem, 2.5vw, 1.75rem); font-weight: 950; letter-spacing: -.045em; color: var(--teal); }
+    .brand-wordmark strong span { color: var(--orange); }
+    .brand-wordmark small { color: #647578; font-size: .68rem; font-weight: 650; letter-spacing: .01em; }
+    .top-note { display: inline-flex; align-items: center; gap: 9px; color: #365250; font-size: .88rem; font-weight: 650; }
+    .live-dot { width: 9px; height: 9px; border-radius: 50%; background: #22a06b; box-shadow: 0 0 0 4px rgba(34,160,107,.12); }
+    .hero {
+      position: relative; isolation: isolate; display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(260px, .85fr);
+      align-items: center; gap: 12px; overflow: hidden; min-height: 260px; padding: 28px 38px;
+      border-radius: 25px; color: white; background: linear-gradient(112deg, #071a1c 0%, #103c3a 65%, #075d53 100%);
+      box-shadow: 0 20px 50px rgba(7, 39, 36, .14);
+    }
+    .hero::before, .hero::after { content: ""; position: absolute; border: 1px solid rgba(255,255,255,.10); border-radius: 50%; z-index: -1; }
+    .hero::before { width: 360px; height: 360px; right: 2%; top: -120px; }
+    .hero::after { width: 260px; height: 260px; right: 6%; top: -70px; }
+    .hero-copy { position: relative; z-index: 2; max-width: 640px; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 8px; margin: 0 0 14px; color: #aef1df; text-transform: uppercase; letter-spacing: .14em; font-size: .74rem; font-weight: 800; }
+    .eyebrow::before { content: ""; display: inline-block; width: 22px; height: 3px; border-radius: 4px; background: var(--orange); }
+    h1 { max-width: 660px; margin: 0; font-size: clamp(2rem, 4.2vw, 3.25rem); line-height: 1.08; letter-spacing: -.045em; }
+    h1 .orange { color: #ff8a3b; }
+    .hero-copy > p { max-width: 570px; margin: 15px 0 0; color: #d4e6e3; line-height: 1.65; font-size: 1rem; }
+    .hero-badges { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+    .hero-badges span { border: 1px solid rgba(255,255,255,.20); background: rgba(255,255,255,.08); border-radius: 99px; padding: 7px 11px; font-size: .79rem; color: #f2fbf9; }
+    .mascot-wrap { position: relative; display: grid; place-items: center; min-height: 220px; }
+    .mascot-glow { position: absolute; width: 230px; height: 155px; border-radius: 50%; background: rgba(0, 255, 209, .16); filter: blur(35px); }
+    .mascot { position: relative; width: min(100%, 300px); max-height: 258px; object-fit: contain; filter: drop-shadow(0 18px 18px rgba(0,0,0,.23)); animation: hover-flight 4s ease-in-out infinite; }
+    @keyframes hover-flight { 0%,100% { transform: translate3d(0, 0, 0) rotate(-2deg); } 50% { transform: translate3d(0, -13px, 0) rotate(2deg); } }
+    .spark { position: absolute; border-radius: 50%; background: var(--orange); box-shadow: 0 0 20px rgba(255,116,23,.65); animation: sparkle 2.7s ease-in-out infinite; }
+    .spark.s1 { width: 8px; height: 8px; right: 12%; top: 25%; }
+    .spark.s2 { width: 5px; height: 5px; left: 14%; top: 35%; animation-delay: .7s; }
+    .spark.s3 { width: 6px; height: 6px; right: 19%; bottom: 18%; animation-delay: 1.3s; }
+    @keyframes sparkle { 0%,100% { opacity: .4; transform: scale(.8); } 50% { opacity: 1; transform: scale(1.4); } }
+
+    .content-grid { display: grid; grid-template-columns: minmax(245px, .72fr) minmax(0, 1.28fr); gap: 20px; margin-top: 20px; align-items: stretch; }
+    .side-card, .chat-card { background: var(--paper); border: 1px solid var(--line); border-radius: 22px; box-shadow: 0 12px 35px rgba(18, 46, 44, .06); }
+    .side-card { padding: 23px; }
+    .section-label { text-transform: uppercase; letter-spacing: .12em; font-size: .71rem; font-weight: 800; color: var(--teal); margin: 0 0 8px; }
+    .side-card h2 { margin: 0; letter-spacing: -.025em; font-size: 1.55rem; line-height: 1.2; }
+    .side-card .intro { color: var(--muted); line-height: 1.55; font-size: .91rem; margin: 10px 0 17px; }
+    .path-button { display: flex; align-items: center; text-align: left; gap: 12px; width: 100%; border: 1px solid #e5eeec; border-radius: 15px; background: white; padding: 13px; margin-top: 10px; color: var(--ink); transition: transform .18s, border-color .18s, box-shadow .18s; }
+    .path-button:hover { border-color: #9accc1; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,121,102,.08); }
+    .path-icon { width: 45px; height: 45px; border-radius: 13px; display: grid; place-items: center; flex: 0 0 auto; font-size: 1.35rem; background: #e5f5f1; }
+    .path-button.devops .path-icon { background: #fff0e5; }
+    .path-copy { min-width: 0; flex: 1; }
+    .path-copy strong { display: block; font-size: .95rem; margin-bottom: 3px; }
+    .path-copy small { display: block; color: var(--muted); line-height: 1.35; font-size: .78rem; }
+    .path-arrow { color: #8aa19d; font-size: 1.15rem; }
+    .project-tip { margin-top: 18px; padding: 13px 14px; border-radius: 14px; background: #f7faf9; border: 1px dashed #cbded9; color: #4a6260; font-size: .82rem; line-height: 1.5; }
+    .project-tip strong { color: #1d514a; }
+
+    .chat-card { display: flex; flex-direction: column; min-height: 590px; overflow: hidden; }
+    .chat-head { display: flex; align-items: center; gap: 12px; border-bottom: 1px solid var(--line); padding: 16px 19px; }
+    .avatar { display: grid; place-items: center; flex: 0 0 auto; width: 48px; height: 48px; overflow: hidden; border-radius: 15px; background: linear-gradient(140deg, #d5f5eb, #fef0e4); }
+    .avatar img { width: 53px; height: 53px; object-fit: contain; }
+    .chat-title { min-width: 0; flex: 1; }
+    .chat-title strong { display: block; font-size: .99rem; }
+    .chat-title small { display: block; margin-top: 3px; color: var(--muted); font-size: .78rem; }
+    .mode-badge { padding: 6px 8px; border-radius: 8px; background: #e6f7ef; color: #187148; font-size: .66rem; font-weight: 850; letter-spacing: .04em; white-space: nowrap; }
+    .mode-badge.ai { background: #e8f0ff; color: #2558a8; }
+    .chat-notice { padding: 9px 18px; color: #586b68; background: #fbfdfc; border-bottom: 1px solid #eef3f2; font-size: .76rem; }
+    #messages { flex: 1; min-height: 300px; overflow: auto; padding: 20px 18px 12px; display: flex; flex-direction: column; gap: 12px; scroll-behavior: smooth; }
+    .msg-row { display: flex; align-items: flex-end; gap: 8px; max-width: 94%; }
+    .msg-row.assistant { align-self: flex-start; }
+    .msg-row.user { align-self: flex-end; flex-direction: row-reverse; }
+    .bubble-avatar { flex: 0 0 auto; width: 27px; height: 27px; display: grid; place-items: center; background: #e3f3ef; border-radius: 9px; overflow: hidden; }
+    .bubble-avatar img { width: 33px; height: 33px; object-fit: contain; }
+    .bubble { padding: 11px 14px; border-radius: 16px 16px 16px 5px; background: #f1f7f5; color: #1e3936; border: 1px solid #e4eeeb; white-space: pre-wrap; overflow-wrap: anywhere; line-height: 1.56; font-size: .9rem; }
+    .msg-row.user .bubble { background: var(--teal); color: white; border-color: var(--teal); border-radius: 16px 16px 5px 16px; }
+    .bubble strong { font-weight: 800; }
+    .msg-row.error .bubble { background: #fff1f2; color: #9f1239; border-color: #fecdd3; }
+    .typing { display: inline-flex; align-items: center; gap: 4px; }
+    .typing i { width: 5px; height: 5px; background: #7a9b94; border-radius: 50%; animation: dot 1s ease-in-out infinite; }
+    .typing i:nth-child(2) { animation-delay: .15s; } .typing i:nth-child(3) { animation-delay: .3s; }
+    @keyframes dot { 0%,80%,100% { opacity:.4; transform:translateY(0); } 40% { opacity:1; transform:translateY(-4px); } }
+    .suggestions { display: flex; flex-wrap: wrap; gap: 7px; padding: 0 18px 14px; }
+    .suggestion { border: 1px solid #bcd9d2; color: #17675a; background: #f8fcfb; border-radius: 99px; padding: 7px 11px; font-size: .77rem; transition: background .15s; }
+    .suggestion:hover { background: #e8f7f2; }
+    .chat-form { display: flex; align-items: flex-end; gap: 9px; padding: 14px; border-top: 1px solid var(--line); background: white; }
+    #message-input { flex: 1; min-width: 0; resize: none; min-height: 45px; max-height: 120px; border: 1px solid #d5e2df; border-radius: 13px; padding: 12px 13px; color: var(--ink); outline: none; background: #fcfefd; font-size: .9rem; }
+    #message-input:focus { border-color: var(--teal); box-shadow: 0 0 0 3px rgba(0,121,102,.10); }
+    #send-button { height: 45px; border: 0; border-radius: 13px; padding: 0 17px; background: var(--orange); color: #291508; font-size: .87rem; font-weight: 850; box-shadow: 0 5px 12px rgba(255,116,23,.18); }
+    #send-button:hover { background: #ff8736; }
+    #send-button:disabled { opacity: .6; cursor: wait; }
+    .chat-foot { padding: 0 18px 13px; display: flex; align-items: center; justify-content: space-between; gap: 10px; color: #718480; font-size: .72rem; }
+    .clear-button { border: 0; padding: 0; background: transparent; color: var(--teal); text-decoration: underline; font-size: inherit; }
+    .page-foot { text-align: center; padding-top: 18px; color: #81918e; font-size: .76rem; }
+    .page-foot span { color: var(--teal); font-weight: 750; }
+
+    @media (max-width: 860px) {
+      .hero { padding: 25px; grid-template-columns: minmax(0, 1fr) 240px; }
+      .mascot { max-height: 220px; }
+      .content-grid { grid-template-columns: 1fr; }
+      .side-card { order: 2; }
+      .chat-card { order: 1; min-height: 570px; }
+    }
+    @media (max-width: 580px) {
+      .shell { width: min(100% - 20px, 520px); padding-top: 12px; }
+      .topbar { align-items: flex-start; flex-direction: column; gap: 8px; }
+      .brand-logo { width: 56px; height: 56px; }
+      .brand-wordmark strong { font-size: 1.35rem; }
+      .brand-wordmark small { font-size: .62rem; }
+      .hero { grid-template-columns: 1fr; padding: 25px 21px 12px; border-radius: 20px; }
+      .hero-copy > p { font-size: .91rem; }
+      .mascot-wrap { min-height: 125px; margin-top: -2px; }
+      .mascot { width: 180px; max-height: 175px; margin-top: -5px; }
+      .mascot-glow { width: 145px; height: 85px; }
+      .hero::before { right: -150px; top: 10px; }
+      .hero::after { right: -100px; top: 35px; }
+      .chat-card { min-height: 620px; border-radius: 18px; }
+      .chat-head { padding: 13px; gap: 9px; }
+      .mode-badge { max-width: 105px; white-space: normal; text-align: center; line-height: 1.2; }
+      #messages { padding: 15px 11px; }
+      .msg-row { max-width: 98%; gap: 6px; }
+      .bubble { font-size: .86rem; padding: 10px 12px; }
+      .suggestions { padding: 0 12px 12px; }
+      .suggestion { font-size: .73rem; }
+      .chat-form { padding: 10px; gap: 7px; }
+      #send-button { padding: 0 13px; }
+      .side-card { padding: 19px; }
+    }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; } }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <nav class="topbar" aria-label="EduTechX branding">
+      <div class="brand-lockup">
+        <img class="brand-logo" src="{{ url_for('static', filename='edutechx-logo.png') }}" alt="Xylo, the EduTechX flying robot logo">
+        <div class="brand-wordmark"><strong>EDUTECH<span>X</span></strong><small>Empowering Tomorrow’s Leaders</small></div>
+      </div>
+      <div class="top-note"><span class="live-dot" aria-hidden="true"></span> Your learning buddy is ready</div>
+    </nav>
+
+    <section class="hero" aria-labelledby="welcome-title">
+      <div class="hero-copy">
+        <p class="eyebrow">Your next skill starts here</p>
+        <h1 id="welcome-title">Welcome to <span class="orange">EDUTECHX!</span><br>What's up today?</h1>
+        <p>Meet Xylo — your friendly learning bot. Let's explore Cloud Computing, AWS, DevOps, and the skills to build real-world projects.</p>
+        <div class="hero-badges"><span>☁️ Cloud Computing</span><span>⚙️ DevOps</span><span>🚀 Hands-on projects</span></div>
+      </div>
+      <div class="mascot-wrap" aria-label="Xylo the flying robot mascot">
+        <span class="mascot-glow" aria-hidden="true"></span><span class="spark s1" aria-hidden="true"></span><span class="spark s2" aria-hidden="true"></span><span class="spark s3" aria-hidden="true"></span>
+        <img class="mascot" src="{{ url_for('static', filename='edutechx-bot.png') }}" alt="Xylo, the flying robot mascot, using the exact supplied EduTechX robot image">
+      </div>
+    </section>
+
+    <section class="content-grid" aria-label="Learning paths and chatbot">
+      <aside class="side-card">
+        <p class="section-label">Choose your adventure</p>
+        <h2>What would you like to learn?</h2>
+        <p class="intro">Not sure where to start? Pick a path and Xylo will guide you through the concepts and a hands-on project.</p>
+        <button class="path-button cloud" type="button" data-prompt="Show me a beginner-friendly Cloud Computing and AWS course roadmap with hands-on projects.">
+          <span class="path-icon" aria-hidden="true">☁️</span><span class="path-copy"><strong>Cloud Computing</strong><small>AWS basics, servers, storage and hosting</small></span><span class="path-arrow" aria-hidden="true">↗</span>
+        </button>
+        <button class="path-button devops" type="button" data-prompt="Show me a beginner-friendly DevOps course roadmap with Git, Docker, CI/CD and projects.">
+          <span class="path-icon" aria-hidden="true">⚙️</span><span class="path-copy"><strong>DevOps Engineering</strong><small>Git, automation, containers and CI/CD</small></span><span class="path-arrow" aria-hidden="true">↗</span>
+        </button>
+        <button class="path-button" type="button" data-prompt="Show me a beginner-friendly Engineering learning path. Compare engineering fields and suggest a safe hands-on project.">
+          <span class="path-icon" aria-hidden="true">🛠️</span><span class="path-copy"><strong>Engineering</strong><small>Explore fields, fundamentals and safe projects</small></span><span class="path-arrow" aria-hidden="true">↗</span>
+        </button>
+        <button class="path-button" type="button" data-prompt="Compare Cloud Computing and DevOps for a complete beginner. How do the skills work together and what should I learn first?">
+          <span class="path-icon" aria-hidden="true">🧭</span><span class="path-copy"><strong>Help me choose</strong><small>Compare both learning paths</small></span><span class="path-arrow" aria-hidden="true">↗</span>
+        </button>
+        <div class="project-tip"><strong>💡 Learn by building</strong><br>Try a mini project: deploy a simple Python web app, then learn how to package and automate it.</div>
+      </aside>
+
+      <section class="chat-card" aria-label="Chat with Xylo">
+        <header class="chat-head">
+          <div class="avatar"><img src="{{ url_for('static', filename='edutechx-bot.png') }}" alt="Xylo robot icon"></div>
+          <div class="chat-title"><strong>Xylo · EduTechX Learning Buddy</strong><small><span class="live-dot" style="display:inline-block;width:7px;height:7px;margin-right:4px;box-shadow:none"></span> Ready to chat about your future</small></div>
+          <span class="mode-badge {{ '' if demo_mode else 'ai' }}">{{ 'GUIDED DEMO' if demo_mode else 'LIVE AI' }}</span>
+        </header>
+        <div class="chat-notice">Ask about the courses, learning paths, tools, or beginner projects. Never share passwords or AWS keys.</div>
+        <div id="messages" aria-live="polite" aria-label="Conversation">
+          <div class="msg-row assistant"><div class="bubble-avatar"><img src="{{ url_for('static', filename='edutechx-bot.png') }}" alt=""></div><div class="bubble">Welcome to EDUTECHX! 🎉 What's up today? I'm Xylo, your learning buddy. Want to explore Cloud Computing, DevOps, Engineering, or see how they work together?</div></div>
+        </div>
+        <div class="suggestions" aria-label="Suggested questions">
+          <button class="suggestion" type="button" data-prompt="What is Cloud Computing, and what will I learn in a beginner AWS course?">☁️ Explore Cloud</button>
+          <button class="suggestion" type="button" data-prompt="What is DevOps, and which tools should a beginner learn first?">⚙️ Explore DevOps</button>
+          <button class="suggestion" type="button" data-prompt="What is computer engineering, and what safe beginner project can I try?">🛠️ Explore Engineering</button>
+          <button class="suggestion" type="button" data-prompt="Can you suggest a beginner project that combines AWS Cloud and DevOps?">🚀 Project idea</button>
+        </div>
+        <form class="chat-form" id="chat-form">
+          <textarea id="message-input" placeholder="Type your question to Xylo…" maxlength="2000" rows="1" required aria-label="Your message"></textarea>
+          <button id="send-button" type="submit">Send ↗</button>
+        </form>
+        <footer class="chat-foot"><span id="status">{{ 'Demo replies are enabled — no AWS setup needed yet.' if demo_mode else 'Connected to the AI chat service.' }}</span><button id="clear-button" class="clear-button" type="button">Clear chat</button></footer>
+      </section>
+    </section>
+    <footer class="page-foot">Made for curious minds at <span>EduTechX</span> · Empowering Tomorrow's Leaders</footer>
+  </main>
+
+  <script>
+    const messagesEl = document.getElementById('messages');
+    const form = document.getElementById('chat-form');
+    const input = document.getElementById('message-input');
+    const sendButton = document.getElementById('send-button');
+    const statusEl = document.getElementById('status');
+    const clearButton = document.getElementById('clear-button');
+    const demoMode = {{ 'true' if demo_mode else 'false' }};
+    const botImage = {{ url_for('static', filename='edutechx-bot.png') | tojson }};
+    let history = [];
+
+    // Render only a tiny, safe subset of formatting: **bold** and new lines.
+    // Text is always added as text nodes, never interpreted as arbitrary HTML.
+    function renderBubbleText(container, text) {
+      const parts = String(text).split(/(\*\*[^*]+\*\*)/g);
+      parts.forEach(part => {
+        if (part.startsWith('**') && part.endsWith('**') && part.length > 4) {
+          const strong = document.createElement('strong');
+          strong.textContent = part.slice(2, -2);
+          container.appendChild(strong);
+        } else {
+          container.appendChild(document.createTextNode(part));
+        }
+      });
+    }
+
+    function addMessage(text, role, extraClass = '') {
+      const row = document.createElement('div');
+      row.className = `msg-row ${role} ${extraClass}`.trim();
+      if (role === 'assistant') {
+        const avatar = document.createElement('div');
+        avatar.className = 'bubble-avatar';
+        const img = document.createElement('img');
+        img.src = botImage;
+        img.alt = '';
+        avatar.appendChild(img);
+        row.appendChild(avatar);
+      }
+      const bubble = document.createElement('div');
+      bubble.className = 'bubble';
+      renderBubbleText(bubble, text);
+      row.appendChild(bubble);
+      messagesEl.appendChild(row);
+      messagesEl.scrollTop = messagesEl.scrollHeight;
+      return row;
+    }
+
+    function showTyping() {
+      const row = addMessage('', 'assistant');
+      const bubble = row.querySelector('.bubble');
+      const typing = document.createElement('span');
+      typing.className = 'typing';
+      typing.setAttribute('aria-label', 'Xylo is thinking');
+      typing.innerHTML = '<i></i><i></i><i></i>';
+      bubble.appendChild(typing);
+      return row;
+    }
+
+    async function sendMessage(value) {
+      const text = String(value || input.value).trim();
+      if (!text || sendButton.disabled) return;
+      addMessage(text, 'user');
+      input.value = '';
+      input.style.height = 'auto';
+      sendButton.disabled = true;
+      statusEl.textContent = 'Xylo is thinking…';
+      const waiting = showTyping();
+      try {
+        const response = await fetch('/chat', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ messages: [...history.slice(-8), { role: 'user', content: text }] })
+        });
+        const data = await response.json();
+        waiting.remove();
+        if (!response.ok) throw new Error(data.error || 'The request did not succeed.');
+        addMessage(data.reply, 'assistant');
+        history = [...history.slice(-8), { role: 'user', content: text }, { role: 'assistant', content: data.reply }].slice(-10);
+        statusEl.textContent = data.mode === 'static'
+          ? 'Quick reply · Ready for your next question'
+          : data.mode === 'demo'
+            ? 'Guided demo reply · Ready for your next question'
+            : 'AI response received';
+      } catch (error) {
+        waiting.remove();
+        addMessage(error.message || 'Could not connect. Please try again.', 'assistant', 'error');
+        statusEl.textContent = 'Connection needs attention';
+      } finally {
+        sendButton.disabled = false;
+        input.focus();
+      }
+    }
+
+    form.addEventListener('submit', event => { event.preventDefault(); sendMessage(input.value); });
+    input.addEventListener('keydown', event => {
+      if (event.key === 'Enter' && !event.shiftKey) { event.preventDefault(); form.requestSubmit(); }
+    });
+    input.addEventListener('input', () => { input.style.height = 'auto'; input.style.height = Math.min(input.scrollHeight, 120) + 'px'; });
+    document.querySelectorAll('[data-prompt]').forEach(button => button.addEventListener('click', () => sendMessage(button.dataset.prompt)));
+    clearButton.addEventListener('click', () => {
+      history = [];
+      messagesEl.replaceChildren();
+      addMessage("Welcome to EDUTECHX! 🎉 What's up today? I'm Xylo, your learning buddy. Want to explore Cloud Computing, DevOps, or see how they work together?", 'assistant');
+      statusEl.textContent = demoMode ? 'Demo replies are enabled — no AWS setup needed yet.' : 'Ready for a new conversation.';
+      input.focus();
+    });
+  </script>
+</body>
+</html>
